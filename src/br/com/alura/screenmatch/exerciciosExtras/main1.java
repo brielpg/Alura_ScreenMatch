@@ -1,8 +1,10 @@
 package br.com.alura.screenmatch.exerciciosExtras;
 
+import br.com.alura.screenmatch.exerciciosExtras.TituloDesafio;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -11,7 +13,7 @@ import java.net.http.HttpResponse;
 import java.util.Scanner;
 
 public class main1 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //PESSOA
         String json = "{" +
                             "\"nome\":\"Rodrigo\"," +
@@ -76,5 +78,17 @@ public class main1 {
         }catch (ErroConsultaGitHubException e){
             System.out.println(e.getMessage());
         }
+
+
+        //  DESAFIO
+
+
+        FileWriter file = new FileWriter("arquivo.txt");
+        file.write("Conteúdo a ser gravado no arquivo");
+        file.close();
+
+        TituloDesafio titulo1 = new TituloDesafio("TituloTeste", 1990, 150);
+        Gson gsonDesafio = new GsonBuilder().setPrettyPrinting().create();
+        System.out.println(gsonDesafio.toJson(titulo1));
     }
 }
